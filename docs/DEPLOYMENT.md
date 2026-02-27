@@ -8,7 +8,7 @@ Step-by-step procedure for releasing a new version of Simple.AutoMapper to NuGet
 
 ### 1. Update Version
 
-Edit `src/Simple.Mapper.csproj`:
+Edit `src/Simple.AutoMapper.csproj`:
 
 ```xml
 <Version>1.0.10</Version>
@@ -29,7 +29,7 @@ Update the version badge and release note reference in `README.md` if needed.
 ### 4. Build & Test
 
 ```powershell
-dotnet build src/Simple.Mapper.csproj --configuration Release
+dotnet build src/Simple.AutoMapper.csproj --configuration Release
 dotnet test tests/Mapper.Tests.csproj --configuration Release
 ```
 
@@ -40,7 +40,7 @@ dotnet test tests/Mapper.Tests.csproj --configuration Release
 powershell -ExecutionPolicy Bypass -File scripts/publish-nuget.ps1 -DryRun
 
 # Or manual pack
-dotnet pack src/Simple.Mapper.csproj -c Release -o ./.nupkg
+dotnet pack src/Simple.AutoMapper.csproj -c Release -o ./.nupkg
 ```
 
 ### 6. Publish to NuGet
@@ -94,6 +94,6 @@ powershell -ExecutionPolicy Bypass -File scripts/unlist-nuget.ps1 -Version 1.0.9
 
 ## Notes
 
-- Package version is taken from `<Version>` in `src/Simple.Mapper.csproj`
+- Package version is taken from `<Version>` in `src/Simple.AutoMapper.csproj`
 - The package includes README.md, LICENSE.md, and the icon
 - Use `--skip-duplicate` flag in CI/CD for idempotent re-runs

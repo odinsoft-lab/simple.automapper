@@ -26,8 +26,8 @@
 
 		<!-- Package Settings -->
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-		<PackageProjectUrl>https://github.com/odinsoft-lab/simple.mapper</PackageProjectUrl>
-		<PackageIcon>Simple.Mapper.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/odinsoft-lab/simple.automapper</PackageProjectUrl>
+		<PackageIcon>Simple.AutoMapper.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>mapper;dto;object-mapping;expression-trees;mapping-engine;reflection-free;compiled-mapping;list-mapping</PackageTags>
 		<PackageReleaseNotes>v1.0.10
@@ -43,7 +43,7 @@
  - Targets: netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0</PackageReleaseNotes>
 
 		<!-- Repository Information -->
-		<RepositoryUrl>https://github.com/odinsoft-lab/simple.mapper</RepositoryUrl>
+		<RepositoryUrl>https://github.com/odinsoft-lab/simple.automapper</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 
@@ -60,7 +60,7 @@
 		<Deterministic>true</Deterministic>
 		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
 		<Platforms>AnyCPU;x64;x86</Platforms>
-		<ApplicationIcon>Simple.Mapper.ico</ApplicationIcon>
+		<ApplicationIcon>Simple.AutoMapper.ico</ApplicationIcon>
 
 		<!-- Debugging and Symbols -->
 		<DebugType>embedded</DebugType>
@@ -73,19 +73,19 @@
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 		<None Include="..\LICENSE.md" Pack="true" PackagePath="\" />
-		<None Include="..\docs\logo-files\Simple.Mapper.png" Pack="true" PackagePath="\" />
+		<None Include="..\docs\logo-files\Simple.AutoMapper.png" Pack="true" PackagePath="\" />
 		<Content Include="..\LICENSE.md" Link="LICENSE.md" />
-		<Content Include="Simple.Mapper.ico" />
+		<Content Include="Simple.AutoMapper.ico" />
 	</ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
     </ItemGroup>
 
     <!-- DI support for netstandard2.1+ and .NET 8.0+ (excludes netstandard2.0) -->
     <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
     </ItemGroup>
 
 </Project>

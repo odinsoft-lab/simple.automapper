@@ -177,6 +177,6 @@ Mapper.Update(updateDto, existingEntity);
 
 ## Learn More
 
-- [Simple.AutoMapper Documentation](https://github.com/odinsoft-lab/simple.mapper)
-- [Profile Pattern](https://github.com/odinsoft-lab/simple.mapper#profile-pattern)
-- [DI Integration](https://github.com/odinsoft-lab/simple.mapper#dependency-injection)
+- [Simple.AutoMapper Documentation](https://github.com/odinsoft-lab/simple.automapper)
+- [Profile Pattern](https://github.com/odinsoft-lab/simple.automapper#profile-pattern)
+- [DI Integration](https://github.com/odinsoft-lab/simple.automapper#dependency-injection)

@@ -48,7 +48,7 @@
 
 .NOTES
     Author: ODINSOFT
-    Repository: https://github.com/odinsoft-lab/simple.mapper
+    Repository: https://github.com/odinsoft-lab/simple.automapper
 
     Before first use:
     1. Get your API key from https://www.nuget.org/account/apikeys
@@ -76,7 +76,7 @@ param(
 # Configuration
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RootDir = Split-Path -Parent $ScriptDir
-$ProjectPath = Join-Path $RootDir "src\Simple.Mapper.csproj"
+$ProjectPath = Join-Path $RootDir "src\Simple.AutoMapper.csproj"
 $Configuration = "Release"
 $OutputDirectory = Join-Path $RootDir "src\bin\Release"
 $NuGetSource = "https://api.nuget.org/v3/index.json"

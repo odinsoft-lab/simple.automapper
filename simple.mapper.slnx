@@ -1,0 +1,30 @@
+<Solution>
+  <Folder Name="/docs/">
+    <File Path="docs/CONTRIBUTING.md" />
+    <File Path="docs/DEPLOYMENT.md" />
+    <File Path="docs/ROADMAP.md" />
+    <File Path="docs/TASK.md" />
+    <File Path="docs/TODO.md" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Console/BasicSample.csproj" />
+    <Project Path="samples/WebAPI/WebApiSample.csproj" />
+  </Folder>
+  <Folder Name="/scripts/">
+    <File Path="scripts/nuget-config.ps1.example" />
+    <File Path="scripts/publish-nuget.ps1" />
+    <File Path="scripts/unlist-nuget.ps1" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Simple.AutoMapper.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Mapper.Tests.csproj" />
+  </Folder>
+</Solution>

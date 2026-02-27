@@ -86,4 +86,4 @@ MIT License - see [LICENSE.md](LICENSE.md)
 
 ---
 
-**Built with care by the ODINSOFT Team** | [GitHub](https://github.com/odinsoft-lab/simple.mapper)
+**Built with care by the ODINSOFT Team** | [GitHub](https://github.com/odinsoft-lab/simple.automapper)
