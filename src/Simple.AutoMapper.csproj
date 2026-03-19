@@ -65,8 +65,7 @@
 		<!-- Debugging and Symbols -->
 		<DebugType>embedded</DebugType>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<IncludeSymbols>false</IncludeSymbols>
 	</PropertyGroup>
 
 	<!-- Package Files -->
