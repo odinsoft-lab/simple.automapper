@@ -31,4 +31,7 @@ ConfigurationExamples.ProfileExample();
 ComparisonExamples.MapVsPatchComparison();
 ComparisonExamples.PerformanceExample();
 
+// ── Primitive Array (byte[]) — PearlDental ProfilePhoto ──
+ByteArrayExamples.RunAll();
+
 Console.WriteLine("Done. All examples executed successfully.");

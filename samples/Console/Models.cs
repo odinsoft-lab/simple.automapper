@@ -212,4 +212,31 @@ namespace Simple.AutoMapper.Examples
                 .ForMember<string>(d => d.Author, opt => opt.MapFrom(s => s.AuthorName));
         }
     }
+
+    // ── Primitive Array (byte[]) Models ───────────────────────
+    // Simulates PearlDental Member entity with ProfilePhoto (varbinary → byte[])
+
+    public class MemberEntity
+    {
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public byte[] ProfilePhoto { get; set; }
+        public string ProfilePhotoContentType { get; set; }
+        public bool EmailNotifications { get; set; } = true;
+        public bool SmsNotifications { get; set; } = true;
+    }
+
+    public class MemberDto
+    {
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public byte[] ProfilePhoto { get; set; }
+        public string ProfilePhotoContentType { get; set; }
+        public bool EmailNotifications { get; set; }
+        public bool SmsNotifications { get; set; }
+    }
 }

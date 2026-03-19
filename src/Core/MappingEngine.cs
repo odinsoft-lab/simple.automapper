@@ -426,6 +426,21 @@ namespace Simple.AutoMapper.Core
                         );
                         expressions.Add(complexTypeBlock);
                     }
+                    // Handle primitive arrays (byte[], int[], etc.) - direct copy
+                    else if (IsPrimitiveArray(sourceProperty.PropertyType) && sourceProperty.PropertyType == destProperty.PropertyType)
+                    {
+                        var nullCheck = Expression.NotEqual(sourceValue, Expression.Constant(null, sourceProperty.PropertyType));
+                        var cloneMethod = typeof(Array).GetMethod(nameof(Array.Clone));
+                        var cloned = Expression.Convert(
+                            Expression.Call(sourceValue, cloneMethod),
+                            destProperty.PropertyType
+                        );
+                        var conditionalAssign = Expression.IfThen(
+                            nullCheck,
+                            Expression.Assign(destinationValue, cloned)
+                        );
+                        expressions.Add(conditionalAssign);
+                    }
                     // Handle collections
                     else if (IsCollectionType(sourceProperty.PropertyType) && IsCollectionType(destProperty.PropertyType))
                     {
@@ -615,6 +630,17 @@ namespace Simple.AutoMapper.Core
 
                 assignmentBody = Expression.Block(new[] { valueVar }, assignValue, ifCircularAssignCached, mapOrSubstitute);
             }
+            // Primitive arrays (byte[], int[], etc.) - direct copy
+            else if (IsPrimitiveArray(projectedType) && projectedType == destProperty.PropertyType)
+            {
+                var nullCheck = Expression.NotEqual(projected, Expression.Constant(null, projectedType));
+                var cloneMethod = typeof(Array).GetMethod(nameof(Array.Clone));
+                var cloned = Expression.Convert(
+                    Expression.Call(projected, cloneMethod),
+                    destProperty.PropertyType
+                );
+                assignmentBody = Expression.IfThen(nullCheck, Expression.Assign(destinationValue, cloned));
+            }
             // Collections mapping
             else if (IsCollectionType(projectedType) && IsCollectionType(destProperty.PropertyType))
             {
@@ -708,6 +734,11 @@ namespace Simple.AutoMapper.Core
                                 destinationProperty.SetValue(destination, sourceValue);
                             }
                         }
+                        // Handle primitive arrays (byte[], int[], etc.) - direct copy
+                        else if (IsPrimitiveArray(sourceProperty.PropertyType) && sourceProperty.PropertyType == destinationProperty.PropertyType)
+                        {
+                            destinationProperty.SetValue(destination, ((Array)sourceValue).Clone());
+                        }
                         // Handle nested complex types
                         else if (IsComplexType(sourceProperty.PropertyType) && IsComplexType(destinationProperty.PropertyType))
                         {
@@ -772,6 +803,11 @@ namespace Simple.AutoMapper.Core
                             {
                                 destinationProperty.SetValue(destination, sourceValue);
                             }
+                        }
+                        // Handle primitive arrays (byte[], int[], etc.) - direct copy
+                        else if (IsPrimitiveArray(sourceProperty.PropertyType) && sourceProperty.PropertyType == destinationProperty.PropertyType)
+                        {
+                            destinationProperty.SetValue(destination, ((Array)sourceValue).Clone());
                         }
                         // Handle nested complex types
                         else if (IsComplexType(sourceProperty.PropertyType) && IsComplexType(destinationProperty.PropertyType))
@@ -865,6 +901,11 @@ namespace Simple.AutoMapper.Core
                                     destinationProperty.SetValue(destination, sourceValue);
                                 }
                             }
+                        }
+                        // Handle primitive arrays (byte[], int[], etc.) - direct copy
+                        else if (IsPrimitiveArray(sourcePropType) && sourcePropType == destPropType)
+                        {
+                            destinationProperty.SetValue(destination, ((Array)sourceValue).Clone());
                         }
                         // Handle nested complex types (only when source is non-null)
                         else if (IsComplexType(sourcePropType) && IsComplexType(destPropType))
@@ -1121,18 +1162,33 @@ namespace Simple.AutoMapper.Core
 
         private bool IsComplexType(Type type)
         {
-            return type.IsClass && !IsSimpleType(type) && !IsCollectionType(type);
+            return type.IsClass && !IsSimpleType(type) && !IsCollectionType(type) && !IsPrimitiveArray(type);
+        }
+
+        /// <summary>
+        /// Returns true for arrays of simple/primitive types (byte[], int[], char[], etc.)
+        /// These should be copied directly rather than element-by-element mapped.
+        /// </summary>
+        private bool IsPrimitiveArray(Type type)
+        {
+            return type.IsArray && IsSimpleType(type.GetElementType());
         }
 
         private bool IsCollectionType(Type type)
         {
-            return type != typeof(string) && (
-                type.IsArray ||
+            if (type == typeof(string))
+                return false;
+
+            // Primitive arrays (byte[], int[], etc.) are NOT treated as mappable collections
+            if (IsPrimitiveArray(type))
+                return false;
+
+            return type.IsArray ||
                 (type.IsGenericType &&
                  (type.GetGenericTypeDefinition() == typeof(List<>) ||
                   type.GetGenericTypeDefinition() == typeof(IList<>) ||
                   type.GetGenericTypeDefinition() == typeof(IEnumerable<>) ||
-                  type.GetGenericTypeDefinition() == typeof(ICollection<>))));
+                  type.GetGenericTypeDefinition() == typeof(ICollection<>)));
         }
 
         private Type GetCollectionElementType(Type collectionType)

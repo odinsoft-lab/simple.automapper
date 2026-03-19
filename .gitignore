@@ -106,6 +106,8 @@ appsettings.Development.json
 *.trx
 PROMPTS.txt
 cache/
+nupkg/
+.omc/
 
 # Allow documentation release notes to be tracked
 !docs/releases/

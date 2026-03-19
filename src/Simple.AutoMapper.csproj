@@ -10,9 +10,9 @@
 		<RootNamespace>Simple.AutoMapper</RootNamespace>
 
 		<!-- Versioning -->
-		<Version>1.0.10</Version>
-		<AssemblyVersion>1.0.10.0</AssemblyVersion>
-		<FileVersion>1.0.10.0</FileVersion>
+		<Version>1.0.11</Version>
+		<AssemblyVersion>1.0.11.0</AssemblyVersion>
+		<FileVersion>1.0.11.0</FileVersion>
 
 		<!-- Package Information -->
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,17 +30,17 @@
 		<PackageIcon>Simple.AutoMapper.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>mapper;dto;object-mapping;expression-trees;mapping-engine;reflection-free;compiled-mapping;list-mapping</PackageTags>
-		<PackageReleaseNotes>v1.0.10
- - Add Patch 4 overloads: new object, type-inferred, collection, in-place (null-skip semantics)
- - Remove MapTo from ISimpleMapper, replace with Map in-place overload
- - ISimpleMapper now exposes 8 methods: Map (4) + Patch (4)
- - Add PatchTests (11 tests) and CoverageBoostTests (32 tests)
- - Increase test coverage to 92.9% line, 88.8% branch (242 tests)
- - Add docs/GUIDE.md with before/after usage comparisons
- - Restructure samples: Console (feature-split files) and WebAPI (PATCH endpoints)
- - Consolidate docs: RELEASE.md, TASK.md, DEPLOYMENT.md
- - All existing v1.0.9 features remain compatible
- - Targets: netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0</PackageReleaseNotes>
+		<PackageReleaseNotes>v1.0.11
+  add primitive array (byte[]) mapping support
+
+  Fix ArgumentException when mapping byte[], int[], char[] and other
+  primitive arrays that were incorrectly treated as mappable collections.
+
+  - Add IsPrimitiveArray() helper to detect simple-type arrays
+  - Exclude primitive arrays from IsComplexType and IsCollectionType
+  - Copy primitive arrays via Array.Clone() in compiled and reflection paths
+  - Add byte[] mapping samples (MemberEntity/MemberDto ProfilePhoto scenario)
+  </PackageReleaseNotes>
 
 		<!-- Repository Information -->
 		<RepositoryUrl>https://github.com/odinsoft-lab/simple.automapper</RepositoryUrl>
