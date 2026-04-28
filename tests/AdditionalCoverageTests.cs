@@ -3,6 +3,7 @@ using Simple.AutoMapper.Core;
 using Simple.AutoMapper.DependencyInjection;
 using Simple.AutoMapper.Tests.Models;
 using Simple.AutoMapper.Tests.Models.DTO;
+using Xunit;
 
 namespace Simple.AutoMapper.Tests
 {
